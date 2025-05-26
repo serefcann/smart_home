@@ -7,7 +7,7 @@ x_tr = str.maketrans(en,tr)
 r = sr.Recognizer()
 
 with sr.Microphone() as source:
-    #r.adjust_for_ambient_noise(source)
+    r.adjust_for_ambient_noise(source)
 
     print("Konuşabilirsiniz (Çıkmak için Ctrl+C)...")
     while True:

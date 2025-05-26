@@ -2,3 +2,6 @@ vosk
 sounddevice
 SpeechRecognition
 pyaudio
+FastAPI
+uvicorn
+python-multipart

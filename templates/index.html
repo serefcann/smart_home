@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <title>FastAPI Buton Sayfası</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <h1>Akıllı Ev Kontrolü</h1>
+    
+    <div class = "toggle-wrapper" style="display: flex; align-items: center; gap: 30px;">
+        <form action="/toggle" method="post">
+            <label class="switch">
+                <input type="checkbox" name="durum1" onchange="this.form.submit()" {{ 'checked' if durum1 else '' }}>
+                <span class="slider round"></span>
+            </label>
+            <p>Cihaz 1 şu an: <strong >{{'AÇIK' if durum1 else 'KAPALI'}}</strong></p>
+
+        <label class="switch">
+            <input type="checkbox" name="durum2" onchange="this.form.submit()" {{ 'checked' if durum2 else '' }}>
+            <span class="slider round"></span>
+        </label>
+        <p>Cihaz 2 şu an: <strong>{{ 'AÇIK' if durum2 else 'KAPALI' }}</strong></p>
+        </form>
+    </div>
+</body>
+</html>
