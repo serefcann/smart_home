@@ -7,19 +7,34 @@ app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
 app.mount("/static", StaticFiles(directory="static"), name= "static")
-status = {"durum1": False,
-          "durum2":False}
+status = {"oturma_isik": False,
+          "oturma_kapi":False,
+          "koridor_isik":False,
+          'yatak_isik':False,
+          'yatak_kapi':False}
 
 @app.get("/", response_class = HTMLResponse)
 async def get_index(request: Request):
     return templates.TemplateResponse("index.html", {"request": request, 
-                                                     'durum1':status["durum1"],
-                                                     'durum2':status['durum2']})
+                                                     'oturma_isik':status["oturma_isik"],
+                                                     'oturma_kapi':status['oturma_kapi'],
+                                                     'koridor_isik':status['koridor_isik'],
+                                                     'yatak_isik':status['yatak_isik'],
+                                                     'yatak_kapi':status['yatak_kapi']})
 
 @app.post("/toggle")
-async def toggle(durum1: str = Form(None),
-                 durum2: str = Form(None)):
-    status['durum1'] = durum1 == 'on'
-    status["durum2"] = durum2 == 'on'
+async def toggle(
+    oturma_isik: str = Form(None),
+    oturma_kapi: str = Form(None),
+    koridor_isik: str = Form(None),
+    yatak_isik: str = Form(None),
+    yatak_kapi: str = Form(None),
+):
+    status["oturma_isik"] = oturma_isik == 'on' # on ise True degilse False
+    status['oturma_kapi'] = oturma_kapi == 'on'
+    status['koridor_isik'] = koridor_isik == 'on'
+    status['yatak_isik'] = yatak_isik == 'on'
+    status['yatak_kapi'] = yatak_kapi == 'on'
+    
 
     return RedirectResponse("/", status_code=303)

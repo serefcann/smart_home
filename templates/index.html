@@ -6,21 +6,56 @@
 </head>
 <body>
     <h1>Akıllı Ev Kontrolü</h1>
-    
-    <div class = "toggle-wrapper" style="display: flex; align-items: center; gap: 30px;">
-        <form action="/toggle" method="post">
+
+    <div class="oda-container">
+
+    <!-- Oturma Odası -->
+    <div class = "oda">
+        <h2>Oturma Odası</h2>
+        <hr>
+        <form action="/toggle" method="post" class="toggle-wrapper">
             <label class="switch">
-                <input type="checkbox" name="durum1" onchange="this.form.submit()" {{ 'checked' if durum1 else '' }}>
-                <span class="slider round"></span>
+                <input type="checkbox" name="oturma_isik" onchange="this.form.submit()" {{ 'checked' if oturma_isik else '' }}>
+                <span class="slider"></span>
             </label>
-            <p>Cihaz 1 şu an: <strong >{{'AÇIK' if durum1 else 'KAPALI'}}</strong></p>
+            <p>Işık şu an: <strong >{{'AÇIK' if oturma_isik else 'KAPALI'}}</strong></p>
 
         <label class="switch">
-            <input type="checkbox" name="durum2" onchange="this.form.submit()" {{ 'checked' if durum2 else '' }}>
+            <input type="checkbox" name="oturma_kapi" onchange="this.form.submit()" {{ 'checked' if oturma_kapi else '' }}>
             <span class="slider round"></span>
         </label>
-        <p>Cihaz 2 şu an: <strong>{{ 'AÇIK' if durum2 else 'KAPALI' }}</strong></p>
+        <p>Kapı şu an: <strong>{{ 'AÇIK' if oturma_kapi else 'KAPALI' }}</strong></p>
+    </div>
+
+    <!-- Koridor -->
+     <div class="oda">
+        <h2>Koridor</h2>
+        <hr>
+            <label class="switch">
+            <input type="checkbox" name="koridor_isik" onchange="this.form.submit()" {{ 'checked' if koridor_isik else '' }}>
+            <span class="slider"></span>
+            </label>
+        <p>Işık: <strong>{{ 'AÇIK' if koridor_isik else 'KAPALI' }}</strong></p>
+     </div>
+
+     <!--Yatak Odası-->
+     <div class="oda">
+        <h2>Yatak Odası</h2>
+        <hr>
+            <label class="switch">
+                <input type="checkbox" name="yatak_isik" onchange="this.form.submit()" {{ 'checked' if yatak_isik else '' }}>
+                <span class="slider"></span>
+            </label>
+        <p>Işık: <strong>{{ 'AÇIK' if yatak_isik else 'KAPALI' }}</strong></p>
+            
+            <label class="switch">
+                <input type="checkbox" name="yatak_kapi" onchange="this.form.submit()" {{ 'checked' if yatak_kapi else '' }}>
+                <span class="slider"></span>
+            </label>
+        <p>Kapı: <strong>{{ 'AÇIK' if yatak_kapi else 'KAPALI' }}</strong></p>
         </form>
     </div>
+</div>
+
 </body>
 </html>

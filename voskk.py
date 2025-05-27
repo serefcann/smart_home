@@ -10,7 +10,7 @@ def callback(indata, frames, time, status):
         print(status, file=sys.stderr)
     q.put(bytes(indata))
 
-model = Model("C:\\vosk-model-small-tr-0.3")
+model = Model("C:\\vosk-model-en-us-0.22-lgraph")
 samplerate = 16000
 rec = KaldiRecognizer(model,samplerate) # 16khz
 
@@ -21,7 +21,8 @@ with sd.RawInputStream(samplerate=samplerate, blocksize=8000, device=None,
         data = q.get()
         if rec.AcceptWaveform(data):
             result = json.loads(rec.Result())
-            result.get('text')
+            print(result.get('text'))
         else:
             partial = json.loads(rec.PartialResult())
-            partial
+            print(partial)
+            
